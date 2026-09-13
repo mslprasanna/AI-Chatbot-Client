@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="CSS/food.css">
+        <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+     <div class="container">
+        <div class="leftsidebar">
+<nav>
+    <ul>
+          <li><a href="#" class="active"><i class="bi bi-house-door-fill"></i></a></li>
+         <li><a href="#"><i class="bi bi-heart-fill"></i></a></li>
+           <li><a href="#" ><i class="bi bi-archive-fill"></i></a></li>
+           <li><a href="#" ><i class="bi bi-basket2-fill"></i></a></li>
+             <li><a href="#"><i class="bi bi-list"></i></a></li>
+    </ul>
+</nav>  
+</div>
+    <div class="main">
+        <div class="content">
+
+            <p class="contenttext">Hello  Prasanna<br>
+           <span style="color:black">Welcom Back</span> </p>
+           <div class="searchBox">
+           <i class="bi bi-search " ></i>
+            <input type="text" class="contentsearch" placeholder="Search delicious pizzas...">
+        </div> 
+        </div>
+        <div class="banner">
+       <img src="./images/banner.jpg" class="image">
+       <div class="imagetextcenter"><h2 class="bannerText">Fresh & Delicious Pizza Delivered Fast<br> 
+       and Get <span style="color:orange">50% off</span></h2>
+    <p class="bannerTextContent">Enjoy hot pizzas made with premium ingredients.
+Order now and get 50% OFF on your first purchase.</p>
+<button type="submit" class="bannerButton">OrderNow</button></div>
+       </div>
+<nav class="mainNav">
+     <ul class="mainNavUl">
+         <li class="menuTitle"> <a href="">Our Menu</a> </li> 
+        <li class="mainNavLi"> <a href="#" onclick="filterCategory('pizaa')">🍕 Pizaa</a> </li> 
+        <li class="mainNavLi"> <a href="#" onclick="filterCategory('burger')">🍔 Burger</a> </li> 
+        <li class="mainNavLi"> <a href="#" onclick="filterCategory('fries')">🍟 Fries</a> </li> 
+        <li class="menuTitleend"> <a href="#"onclick=" showAll()">See All</a> </li> 
+    </ul>
+</nav>
+
+<div id="cards"></div>
+
+    </div>
+    <div class="rightsidebar">
+        <h2>My Order</h2>
+        <p>📍 Delivery Address</p>
+         <p>Bangalore,Karnataka</p><br>
+        <p> 🕒 Delivery Time</p>
+       <p>20-30 mins</p><br>
+         <p>💳 Payment</p>
+         <p><small>Cash / UPI</small></p>
+         <br>
+        <p>Delivery</p> 
+        <p>FREE</p>
+
+        <div id="carttext"></div>
+        <h2>🛒 Cart</h2>
+
+<ul id="list"></ul>
+
+<h2>Total: ₹<span id="total">0</span></h2>
+<div class="clear-container">
+    <button class="clear" onclick="clearCart()">
+        Clear Cart 🗑️
+    </button><br><br>
+</div>
+    </div>
+   </div> 
+   <button id="chatToggle">💬</button>
+
+   <div class="chat-container">
+
+        <div class="chat-header">
+           Menu AI Assistant
+           <p style="font-size:12px">
+Ask about menu, prices & orders
+</p>
+             <button id="closeChat">✖</button>
+        </div>
+
+        <div class="chat-box">
+
+            <div class="message ai-message">
+
+              🤖 Pizza AI
+            Hello! How can I help you?
+            </div>
+         <div class="quick-actions">
+    <button onclick="quickAsk('Cheapest pizza')">💰 Cheapest Item</button>
+    <button onclick="quickAsk('Pizza under 300')">₹ Under 300</button>
+    <button onclick="quickAsk('Show menu')">📋 Show Menu</button>
+</div>
+            <div class="message user-message">
+                
+            </div>
+
+        </div>
+
+        <div class="chat-input">
+
+            <input
+                type="text"
+                id="userInput"
+                placeholder="Type your message..."
+            >
+
+            <button id="sendBtn">
+                Send
+            </button>
+
+        </div>
+
+    </div>
+<footer>
+
+© 2026 Pizza AI Ordering System
+Built with HTML • CSS • JavaScript • Node.js • Gemini AI
+
+</footer>
+   <script src="food.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
