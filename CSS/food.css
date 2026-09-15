@@ -332,7 +332,7 @@ transition:.3s;
     font-size:24px;
 }
 
-.clear {
+.clear,.checkout {
     background:orange;
     color:white;
     border:none;

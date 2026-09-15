@@ -1,4 +1,4 @@
-let foods=[{image:"./images/pizzapepperoni.jpg",
+let foods=[{image:"./images/pizaapepperoni.jpg",
             name:"Pizaa with Pepperoni",
             icon  :"🍕",
             category: "pizza",
@@ -8,7 +8,7 @@ let foods=[{image:"./images/pizzapepperoni.jpg",
             icon  :"🍕",
             category: "pizza",
             price:450},
-           {image:"./images/Chocolateberrypizza.jpg",
+           {image:"./images/Chocolateberrypizaa.jpg",
             name:"Pizaa with Chocolateberry",
             icon  :"🍕",
             category: "pizza",
@@ -228,6 +228,21 @@ function clearCart()
 {
     cart=[];
     displayItems();
+}
+function checkout() {
+
+    if (cart.length === 0) {
+        alert("Your cart is empty 🛒");
+        return;
+    }
+let totalAmount = 0; 
+cart.forEach(function(item) {
+     totalAmount += item.price * item.quantity; }); 
+     localStorage.setItem("orderTotal", totalAmount);
+     localStorage.setItem("orderItems", JSON.stringify(cart));
+     console.log("Order Total:", localStorage.getItem("orderTotal"));
+      console.log("Order Items:", localStorage.getItem("orderItems"));
+   window.location.href = "checkout.html";
 }
 function quickAsk(text){
     userInput.value = text;
