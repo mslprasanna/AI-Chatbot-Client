@@ -1,7 +1,10 @@
+// ======================================
+// GET ORDER DETAILS
+// ======================================
 
 let orderTotal = localStorage.getItem("orderTotal");
 
-document.getElementById("orderTotal").textContent = orderTotal;
+document.getElementById("orderTotal").textContent = orderTotal || 0;
 
 let orderItems = JSON.parse(
     localStorage.getItem("orderItems")
@@ -63,7 +66,6 @@ function showPaymentFields() {
 
     }
 
-
     else if (payment === "upi") {
 
         paymentFields.innerHTML = `
@@ -76,7 +78,6 @@ function showPaymentFields() {
 
     }
 
-
     else if (payment === "netbanking") {
 
         paymentFields.innerHTML = `
@@ -88,7 +89,6 @@ function showPaymentFields() {
         `;
 
     }
-
 
     else if (payment === "cod") {
 
@@ -104,12 +104,81 @@ function showPaymentFields() {
 
 
 // ======================================
-// PAYMENT
+// PROCEED TO PAYMENT
 // ======================================
 
-async function payNow() {
+function proceedToPayment() {
 
-    // Get total amount
+    const selectedPayment = document.querySelector(
+        'input[name="payment"]:checked'
+    );
+
+
+    // No payment method selected
+    if (!selectedPayment) {
+
+        alert("Please select a payment method.");
+
+        return;
+    }
+
+
+    // ==================================
+    // CASH ON DELIVERY
+    // ==================================
+
+    if (selectedPayment.value === "cod") {
+
+        const name =
+            document.getElementById("fullName").value.trim();
+
+        const email =
+            document.getElementById("email").value.trim();
+
+        const address =
+            document.getElementById("address").value.trim();
+
+
+        if (name === "" || email === "" || address === "") {
+
+            alert("Please enter your delivery details.");
+
+            return;
+        }
+
+
+        alert(
+            "Order placed successfully with Cash on Delivery! 🎉"
+        );
+
+
+        localStorage.removeItem("orderTotal");
+
+        localStorage.removeItem("orderItems");
+
+        return;
+    }
+
+
+    // ==================================
+    // CARD / UPI / NETBANKING
+    // ==================================
+
+    payNow(selectedPayment.value);
+
+}
+
+
+// ======================================
+// RAZORPAY PAYMENT
+// ======================================
+
+async function payNow(paymentMethod) {
+
+    // ==================================
+    // GET TOTAL
+    // ==================================
+
     const totalAmount =
         Number(localStorage.getItem("orderTotal"));
 
@@ -145,47 +214,7 @@ async function payNow() {
 
 
     // ==================================
-    // PAYMENT METHOD
-    // ==================================
-
-    const selectedPayment =
-        document.querySelector(
-            'input[name="payment"]:checked'
-        );
-
-
-    if (!selectedPayment) {
-
-        alert("Please select a payment method.");
-
-        return;
-    }
-
-
-    const paymentMethod =
-        selectedPayment.value;
-
-
-    // ==================================
-    // CASH ON DELIVERY
-    // ==================================
-
-    if (paymentMethod === "cod") {
-
-        alert(
-            "Order placed successfully with Cash on Delivery! 🎉"
-        );
-
-        localStorage.removeItem("orderTotal");
-
-        localStorage.removeItem("orderItems");
-
-        return;
-    }
-
-
-    // ==================================
-    // RAZORPAY PAYMENT
+    // RAZORPAY ORDER
     // ==================================
 
     try {
@@ -231,75 +260,52 @@ async function payNow() {
 
         const options = {
 
-            key: "rzp_test_TbvYc4H2I71GYm",
+    key: "rzp_test_TbvYc4H2I71GYm",
 
-            amount: data.order.amount,
+    amount: data.order.amount,
 
-            currency: "INR",
+    currency: "INR",
 
-            name: "Food Ordering App",
+    name: "Food Ordering App",
 
-            description: "Food Order Payment",
+    description: "Food Order Payment",
 
-            order_id: data.order.id,
+    order_id: data.order.id,
 
+   
 
-            // SUCCESS
-            handler: function(response) {
+    handler: function(response) {
 
-                console.log(
-                    "Payment Response:",
-                    response
-                );
+        console.log("Payment Response:", response);
 
+        alert("Payment successful! 🎉");
 
-                alert(
-                    "Payment successful! 🎉"
-                );
+        localStorage.removeItem("orderTotal");
+        localStorage.removeItem("orderItems");
+    },
 
+    prefill: {
+        name: name,
+        email: email
+    },
 
-                localStorage.removeItem(
-                    "orderTotal"
-                );
-
-
-                localStorage.removeItem(
-                    "orderItems"
-                );
-
-            },
+    theme: {
+        color: "#ff6b00"
+    }
+};
 
 
-            // CUSTOMER DETAILS
-            prefill: {
+        // ==================================
+        // OPEN RAZORPAY
+        // ==================================
 
-                name: name,
-
-                email: email
-
-            },
-
-
-            // THEME
-            theme: {
-
-                color: "#ff6b00"
-
-            }
-
-        };
-
-
-        // Create Razorpay checkout
         const razorpay =
             new Razorpay(options);
 
-
-        // Open Razorpay
         razorpay.open();
 
-
     }
+
 
     catch (error) {
 
@@ -316,4 +322,3 @@ async function payNow() {
     }
 
 }
-

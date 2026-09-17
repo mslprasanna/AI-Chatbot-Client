@@ -10,33 +10,27 @@ body{
     background:#f4f4f4;
 }
 
-.chat-container{
-    display:none;
-    position:fixed;
+.chat-container {
+    position: fixed;
+    bottom: 90px;
+    right: 340px;
 
-    bottom:90px;
-    right:20px;
+    width: 280px;
+    max-width: 280px;
 
-    width:300px;
-    max-width:95vw;
+    height: 550px;
+    max-height: 80vh;
 
-    height:550px;
-    max-height:80vh;
+    display: none;
+    flex-direction: column;
 
-    display:flex;
-    flex-direction:column;
+    overflow: hidden;
+    background: white;
+    border-radius: 15px;
 
-    overflow:hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,.2);
 
-    background:white;
-
-    border-radius:15px;
-
-    box-shadow:0 8px 25px rgba(0,0,0,.2);
-
-    display:none;
-
-    z-index:1000;
+    z-index: 1000;
 }
 
 .chat-header{
@@ -161,19 +155,25 @@ margin:12px;
 .typing span:nth-child(3){
     animation-delay:0.4s;
 }
-#chatToggle{
+#chatToggle {
     position: fixed;
     bottom: 20px;
     right: 20px;
+
     width: 65px;
     height: 65px;
+
     border: none;
     border-radius: 50%;
+
     background: orange;
     color: white;
+
     font-size: 28px;
     cursor: pointer;
+
     box-shadow: 0 5px 15px rgba(0,0,0,.3);
+
     z-index: 999;
 }
 #chatToggle{
@@ -237,17 +237,181 @@ animation:float 2s infinite;
     }
 
 }
-@media(max-width:768px){
+/* ============================= */
+/* TABLET / SMALL DESKTOP */
+/* ============================= */
 
-.chat-container{
+@media (max-width: 1100px) and (min-width: 769px) {
 
-    width:95%;
+    .rightsidebar {
+        width: 260px;
+        padding: 20px;
+    }
 
-    height:70vh;
+    .main {
+        margin-left: 80px;
+        margin-right: 260px;
+        padding: 20px;
+    }
 
-    right:2.5%;
+    .chat-container {
+        width: 260px;
+        max-width: 260px;
 
-    bottom:80px;
+        right: 280px;
+        bottom: 90px;
+
+        height: 500px;
+    }
+
+    .content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .searchBox {
+        width: 100%;
+    }
+
+    #cards {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .cardImg {
+        width: 140px;
+        height: 140px;
+    }
 }
 
+
+/* ============================= */
+/* MOBILE */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+    .container {
+        flex-direction: column;
+    }
+
+    .leftsidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+        box-shadow: none;
+    }
+
+    .leftsidebar nav {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .leftsidebar nav ul {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 15px 0;
+    }
+
+    .leftsidebar nav li {
+        padding: 5px;
+    }
+
+    .main {
+        margin: 0;
+        width: 100%;
+        padding: 15px;
+    }
+
+    /* CART STAYS VISIBLE */
+    .rightsidebar {
+        position: static;
+
+        width: 100%;
+        height: auto;
+        min-height: auto;
+
+        padding: 20px;
+
+        box-shadow: none;
+    }
+
+    .content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .searchBox {
+        width: 100%;
+    }
+
+    .contentsearch {
+        width: 100%;
+    }
+
+    .bannerText {
+        font-size: 22px;
+    }
+
+    .bannerTextContent {
+        font-size: 13px;
+    }
+
+    .imagetextcenter {
+        max-width: 80%;
+        left: 20px;
+    }
+
+    .mainNavUl {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    #cards {
+        grid-template-columns: 1fr;
+    }
+
+    .cardImg {
+        width: 100px;
+        height: 100px;
+    }
+
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .clear-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    /* CHATBOT ON MOBILE */
+    .chat-container {
+        width: 92%;
+        max-width: 92%;
+
+        height: 70vh;
+        max-height: 70vh;
+
+        right: 4%;
+        bottom: 80px;
+    }
+
+    #chatToggle {
+        right: 20px;
+        bottom: 20px;
+    }
+
+    footer {
+        margin-top: 30px;
+        padding: 20px 10px;
+        text-align: center;
+        font-size: 14px;
+    }
 }
