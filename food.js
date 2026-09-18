@@ -1,33 +1,33 @@
 let foods=[{image:"./images/pizaapepperoni.jpg",
             name:"Pizaa with Pepperoni",
             icon  :"🍕",
-            category: "pizza",
+            category: "pizaa",
             price:250},
             {image:"./images/cheesepizza.jpg",
             name:"Pizaa with Cheese",
             icon  :"🍕",
-            category: "pizza",
+            category: "pizaa",
             price:450},
            {image:"./images/Chocolateberrypizaa.jpg",
             name:"Pizaa with Chocolateberry",
             icon  :"🍕",
-            category: "pizza",
+            category: "pizaa",
             price:350},
           {image:"./images/Margheritapizza.jpg",
             name:"Pizaa with Margherita",
-            category: "pizza",
+            category: "pizaa",
             icon  :"🍕",
-            category: "pizza",
+            category: "pizaa",
             price:400},
         {image:"./images/ChacoPizaa.jpg",
             icon  :"🍕",
             name:"Chaco Pizaa",
-            category: "pizza",
+            category: "pizaa",
             price:300},
              {image:"./images/topings.jpg",
             name:"Variety Topings",
             icon  :"🍕",
-            category: "pizza",
+            category: "pizaa",
             price:500},
             {
         name: "Classic Burger",
@@ -240,8 +240,6 @@ cart.forEach(function(item) {
      totalAmount += item.price * item.quantity; }); 
      localStorage.setItem("orderTotal", totalAmount);
      localStorage.setItem("orderItems", JSON.stringify(cart));
-     console.log("Order Total:", localStorage.getItem("orderTotal"));
-      console.log("Order Items:", localStorage.getItem("orderItems"));
    window.location.href = "checkout.html";
 }
 function quickAsk(text){
